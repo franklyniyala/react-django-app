@@ -58,14 +58,14 @@ pipeline{
 
         stage('Push Docker Image'){
             steps{
-                sh 'docker compose push'
+                sh 'docker-compose push'
             }
         }
 
         stage('Deploy Application'){
             steps{
-                sh 'docker compose down'
-                sh 'docker compose up -d'
+                sh 'docker-compose down'
+                sh 'docker-compose up -d'
             }
         }
 
