@@ -1,8 +1,5 @@
 pipeline{
     agent any
-    tools{
-        git 'git'
-    }
     
     stages{
         
