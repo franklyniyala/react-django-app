@@ -9,7 +9,7 @@ pipeline{
         stage('Checkout Code'){
             steps{
                 git branch: main,
-                credentialsId: 'GITHUB_CRED'
+                credentialsId: 'GITHUB_CRED',
                 url: 'https://github.com/franklyniyala/react-django-app.git'
             }
         }
@@ -40,7 +40,7 @@ pipeline{
             }
         }
 
-        stage('Build Docker Images'){
+        stage('Build Docker Image'){
             steps{
                 sh 'docker compose build'
             }
