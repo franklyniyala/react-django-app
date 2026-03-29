@@ -9,6 +9,7 @@ pipeline{
         stage('Checkout Code'){
             steps{
                 git branch: main,
+                credentialsId: 'GITHUB_CRED'
                 url: 'https://github.com/franklyniyala/react-django-app.git'
             }
         }
@@ -45,6 +46,25 @@ pipeline{
             }
         }
 
+        stage(Login to Docker){
+            steps{
+                withCredentials([usernamePassword(
+                    credentialsId: 'DOCKER_LOGIN',
+                    usernameVariable: 'USERNAME',
+                    passwordVariable: 'PASSWORD'
+                )]){
+                    sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
+
+                }
+            }
+        }
+
+        stage('Push Docker Image'){
+            steps{
+                sh 'docker compose push'
+            }
+        }
+
         stage('Deploy Application'){
             steps{
                 sh 'docker compose down'
@@ -52,6 +72,15 @@ pipeline{
             }
         }
 
+    }
+
+    post{
+        success{
+            echo ' ✅ Deployment successful!'
+        }
+        failure{
+            echo ' ❌ Deployment failed!'
+        }
     }
     
 }
