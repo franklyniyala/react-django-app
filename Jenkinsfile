@@ -32,7 +32,7 @@ pipeline{
         stage('Run Tests'){
             steps{
                 dir('backend'){
-                    sh 'python manage.py test'
+                    sh 'python3 manage.py test'
                 }
             }
         }
