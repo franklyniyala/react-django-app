@@ -5,7 +5,7 @@ pipeline{
         
         stage('Checkout Code'){
             steps{
-                git branch: main,
+                git branch: 'main',
                 credentialsId: 'GITHUB_CRED',
                 url: 'https://github.com/franklyniyala/react-django-app.git'
             }
