@@ -6,19 +6,36 @@ pipeline{
         stage('Checkout Code'){
             steps{
                 git branch: 'main',
-                credentialsId: 'GITHUB_CRED',
+                credentialsId: 'GITHUB_LOGIN',
                 url: 'https://github.com/franklyniyala/react-django-app.git'
+            }
+
+        }
+
+        stage ('SonarQube Analysis') {
+            steps {
+                withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
+                    sh '''
+                    docker run --rm \
+                    -e SONAR_TOKEN=$SONAR_TOKEN \
+                    -v $(pwd):/usr/src \
+                    sonarsource/sonar-scanner-cli \
+                    -Dsonar.projectKey=
+                    -Dsonar.organization=frank-org \
+                    -Dsonar.sources=. \
+                    -Dsonar.host.url=https://sonarcloud.io \
+                    '''
+                }
             }
         }
 
-        stage('Build Frontend'){
+        stage('Build Frontend Image'){
             steps{
                 dir('frontend'){
                     sh 'npm install'
                     sh 'npm run build'
                 }
             }
-
         }
 
         stage('Build Backend'){
