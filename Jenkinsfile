@@ -20,7 +20,7 @@ pipeline{
                     -e SONAR_TOKEN=$SONAR_TOKEN \
                     -v $(pwd):/usr/src \
                     sonarsource/sonar-scanner-cli \
-                    -Dsonar.projectKey=
+                    -Dsonar.projectKey=frank-org_reactdjango \
                     -Dsonar.organization=frank-org \
                     -Dsonar.sources=. \
                     -Dsonar.host.url=https://sonarcloud.io \
