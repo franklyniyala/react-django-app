@@ -5,5 +5,11 @@ terraform {
       version = "6.39.0"
     }
   }
+
+}
+
+provider "aws" {
+  # Configuration options
+  region = var.aws_region
 }
 

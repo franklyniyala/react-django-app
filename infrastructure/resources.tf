@@ -1,7 +1,6 @@
 # VPC
 resource "aws_vpc" "react-django-vpc" {
   cidr_block       = "10.0.0.0/16"
-  instance_tenancy = "default"
 
   tags = {
     Name = "react-django"
@@ -13,6 +12,7 @@ resource "aws_vpc" "react-django-vpc" {
 resource "aws_subnet" "react-django-subnet" {
   vpc_id     = aws_vpc.react-django-vpc.id
   cidr_block = "10.0.1.0/24"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "react-django-subnet"
