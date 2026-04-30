@@ -1,0 +1,30 @@
+# Git
+.git
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Django
+db.sqlite3
+*.sqlite3
+
+# Environment
+.env
+*.local
+
+# Logs
+*.log
+
+# Infrastructure & CI/CD
+../infrastructure/
+../Jenkinsfile

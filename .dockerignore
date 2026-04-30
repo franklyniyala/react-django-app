@@ -1,0 +1,31 @@
+# Git
+.git
+
+# Infrastructure / Terraform
+infrastructure/
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+db.sqlite3
+
+# Frontend dependencies
+frontend/node_modules
+frontend/dist
+
+# Environment
+.env
+*.local
+
+# Logs
+*.log
+
+# CI/CD
+Jenkinsfile
